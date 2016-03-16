@@ -32,7 +32,7 @@
                                                 <div class="nav navbar-nav navbar">
                                                     <div class="col-xs-6">
                                                         <div class="navbar-header">
-                                                            @*<a class="navbar-brand" href="~/home/index" style="font-size:40px">KAB @*<span class="glyphicon glyphicon-home"></span></a>*@
+                                                            <a class="navbar-brand" href="~/home/index" style="font-size:40px">KAB <span class="glyphicon glyphicon-home"></span></a>
                                                             <a class="navbar-brand brand-name">
                                                                 <a href="~/home/index">
                                                                     <img class="img-responsive2"
@@ -48,15 +48,15 @@
                                                             <input type="text" class="form-control" ng-model="searchQuery" placeholder="Här kan du söka efter produkter..." />
                                                             <span class="input-group-btn">
                                                                 <a href="~/products/search/{{searchQuery}}" class="btn btn-primary">
-                                                                    @*<a href='@Url.Action("Search", "Products", searchQuery)' class="btn btn-primary">*@
+                                                                    <a href='@Url.Action("Search", "Products", searchQuery)' class="btn btn-primary">
                                                                     <span style="clear:both" class="glyphicon glyphicon-search"></span>
                                                                 </a>&nbsp&nbsp&nbsp&nbsp
                                                             </span>
                                                         </div>
-                                                        @*<div ng-init="searchQuery='John'">
+                                                        <div ng-init="searchQuery='John'">
                                                                 <p>Name: <input type="text"  /></p>
                                                                 <p>You wrote: </p>
-                                                            </div>*@
+                                                            </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -66,23 +66,11 @@
                                 <div class="row">
                                     <div class="col-xs-10">
                                         <ul class="nav navbar-nav navbar-right">
-                                            @*<li><a href="#"><span class="glyphicon glyphicon-globe"></span> Nyheter</a></li>*@
+                                            <li><a href="#"><span class="glyphicon glyphicon-globe"></span> Nyheter</a></li>
                                             <li><a href="~/products/shoppingcart">&nbsp&nbsp<span class="glyphicon glyphicon-shopping-cart"></span> Kundvagn</a></li>
-                                            @if (Context.Request.Cookies["Admin"].Count != 0)
-                                            {
-                                                <li><a href="~/products/createproduct">&nbsp&nbsp<span class="glyphicon glyphicon-link"></span> Produktregistrering</a></li>
-                                            }
-                                            @if (Context.Request.Cookies["FirstName"].Count != 0)
-                                            {
-                                                <li><a href="~/customers/mypages">&nbsp&nbsp<span class="glyphicon glyphicon-briefcase"></span> Welcome @Context.Request.Cookies["FirstName"].First() </a></li>
-                                                <li><a href="~/customers/logout">&nbsp&nbsp<span class="glyphicon glyphicon-briefcase"></span> Log out </a></li>
-                                            }
-                                            else
-                                            {
-                                                <li><a href="~/customers/create">&nbsp&nbsp<span class="glyphicon glyphicon-user"></span> Registrering</a></li>
-                                                <li><a href="~/customers/login">&nbsp&nbsp<span class="glyphicon glyphicon-log-in"></span> Inloggning </a></li>
-                                            }
-                                            @*<li><a href="#/iterations"><span class="glyphicon glyphicon-cog"></span> Utvecklingsfaser </a></li>*@
+                                            <li><a href="~/customers/create">&nbsp&nbsp<span class="glyphicon glyphicon-user"></span> Registrering</a></li>
+                                            <li><a href="~/customers/login">&nbsp&nbsp<span class="glyphicon glyphicon-log-in"></span> Inloggning </a></li>
+                                            <li><a href="#/iterations"><span class="glyphicon glyphicon-cog"></span> Utvecklingsfaser </a></li>
                                         </ul>
                                     </div>
                                     <div class="col-xs-2">
@@ -110,12 +98,10 @@
 
             <div class="col-xs-10">
                 <div class="BodyContainer">
-                    @RenderBody()
+                	<h1>Välkommen till KAB!</h1>
+                	<p>Våra varor säljs till förmånliga priser.</p>
                 </div>
             </div>
-
-        @*<div id="asideRight">
-            </div>*@
     </div>
     <div class="row" id="footer">
         <br />
