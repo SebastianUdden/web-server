@@ -1,12 +1,192 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8"/>
-		<title>My App</title>
-	</head>
 
-	<body>
-		<h1>Hello Express.js</h1>	
-		<p>This is my first demo page, working with NodeJS is awesome!</p>
-	</body>
+<html ng-app="myApp">
+<head>
+    <title>KAB - Kontorsbutiken online</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/umd/carousel.js"></script>
+
+    <link href="~/css/superstil.css" rel="stylesheet" />
+    <script src="//code.angularjs.org/1.5.0-rc.2/angular-route.min.js"></script>
+    <script src="//code.angularjs.org/1.5.0-rc.2/angular-resource.min.js"></script>
+    <script src="~/bower_components/microsoft.jquery.unobtrusive.validation/jquery.validate.unobtrusive.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <header>
+                    <div class="containerLeft">
+                        <nav class="navbar navbar-default">
+                            <div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="row">
+                                            <div class="container-fluid">
+                                                <br />
+                                                <div class="nav navbar-nav navbar">
+                                                    <div class="col-xs-6">
+                                                        <div class="navbar-header">
+                                                            @*<a class="navbar-brand" href="~/home/index" style="font-size:40px">KAB @*<span class="glyphicon glyphicon-home"></span></a>*@
+                                                            <a class="navbar-brand brand-name">
+                                                                <a href="~/home/index">
+                                                                    <img class="img-responsive2"
+                                                                         src="~/photos/litenkab.png">
+                                                                    <br />
+                                                                    <p class="col-xs-12 col-xs-offset-5" style="color:white;font-size:larger">Kontorsprylar AB</p>
+                                                                </a>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-6">
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control" ng-model="searchQuery" placeholder="Här kan du söka efter produkter..." />
+                                                            <span class="input-group-btn">
+                                                                <a href="~/products/search/{{searchQuery}}" class="btn btn-primary">
+                                                                    @*<a href='@Url.Action("Search", "Products", searchQuery)' class="btn btn-primary">*@
+                                                                    <span style="clear:both" class="glyphicon glyphicon-search"></span>
+                                                                </a>&nbsp&nbsp&nbsp&nbsp
+                                                            </span>
+                                                        </div>
+                                                        @*<div ng-init="searchQuery='John'">
+                                                                <p>Name: <input type="text"  /></p>
+                                                                <p>You wrote: </p>
+                                                            </div>*@
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-10">
+                                        <ul class="nav navbar-nav navbar-right">
+                                            @*<li><a href="#"><span class="glyphicon glyphicon-globe"></span> Nyheter</a></li>*@
+                                            <li><a href="~/products/shoppingcart">&nbsp&nbsp<span class="glyphicon glyphicon-shopping-cart"></span> Kundvagn</a></li>
+                                            @if (Context.Request.Cookies["Admin"].Count != 0)
+                                            {
+                                                <li><a href="~/products/createproduct">&nbsp&nbsp<span class="glyphicon glyphicon-link"></span> Produktregistrering</a></li>
+                                            }
+                                            @if (Context.Request.Cookies["FirstName"].Count != 0)
+                                            {
+                                                <li><a href="~/customers/mypages">&nbsp&nbsp<span class="glyphicon glyphicon-briefcase"></span> Welcome @Context.Request.Cookies["FirstName"].First() </a></li>
+                                                <li><a href="~/customers/logout">&nbsp&nbsp<span class="glyphicon glyphicon-briefcase"></span> Log out </a></li>
+                                            }
+                                            else
+                                            {
+                                                <li><a href="~/customers/create">&nbsp&nbsp<span class="glyphicon glyphicon-user"></span> Registrering</a></li>
+                                                <li><a href="~/customers/login">&nbsp&nbsp<span class="glyphicon glyphicon-log-in"></span> Inloggning </a></li>
+                                            }
+                                            @*<li><a href="#/iterations"><span class="glyphicon glyphicon-cog"></span> Utvecklingsfaser </a></li>*@
+                                        </ul>
+                                    </div>
+                                    <div class="col-xs-2">
+                                    </div>
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                </header>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-2">
+                <div id="bulletWrapper">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li><a href="~/products/productcategory/2"><span class="glyphicon glyphicon-pencil"></span> Pennor</a></li>
+                        <li><a href="~/products/productcategory/3"><span class="glyphicon glyphicon-envelope"></span> Papper</a></li>
+                        <li><a href="~/products/productcategory/4"><span class="glyphicon glyphicon-paperclip"></span> Skrivare</a></li>
+                        <li><a href="~/products/productcategory/5"><span class="glyphicon glyphicon-cutlery"></span> Kökartiklar</a></li>
+                        <li><a href="~/products/productcategory/6"><span class="glyphicon glyphicon-globe"></span> Övrigt</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-xs-10">
+                <div class="BodyContainer">
+                    @RenderBody()
+                </div>
+            </div>
+
+        @*<div id="asideRight">
+            </div>*@
+    </div>
+    <div class="row" id="footer">
+        <br />
+        Häftapparatsgatan 7, Gemträsk <span class="glyphicon glyphicon-copyright-mark"></span>
+    </div>
+    <script>
+        $(function () {
+            $('.button-checkbox').each(function () {
+
+                // Settings
+                var $widget = $(this),
+                    $button = $widget.find('button'),
+                    $checkbox = $widget.find('input:checkbox'),
+                    color = $button.data('color'),
+                    settings = {
+                        on: {
+                            icon: 'glyphicon glyphicon-check'
+                        },
+                        off: {
+                            icon: 'glyphicon glyphicon-unchecked'
+                        }
+                    };
+
+                // Event Handlers
+                $button.on('click', function () {
+                    $checkbox.prop('checked', !$checkbox.is(':checked'));
+                    $checkbox.triggerHandler('change');
+                    updateDisplay();
+                });
+                $checkbox.on('change', function () {
+                    updateDisplay();
+                });
+
+                // Actions
+                function updateDisplay() {
+                    var isChecked = $checkbox.is(':checked');
+
+                    // Set the button's state
+                    $button.data('state', (isChecked) ? "on" : "off");
+
+                    // Set the button's icon
+                    $button.find('.state-icon')
+                        .removeClass()
+                        .addClass('state-icon ' + settings[$button.data('state')].icon);
+
+                    // Update the button's color
+                    if (isChecked) {
+                        $button
+                            .removeClass('btn-default')
+                            .addClass('btn-' + color + ' active');
+                    }
+                    else {
+                        $button
+                            .removeClass('btn-' + color + ' active')
+                            .addClass('btn-default');
+                    }
+                }
+
+                // Initialization
+                function init() {
+
+                    updateDisplay();
+
+                    // Inject the icon if applicable
+                    if ($button.find('.state-icon').length == 0) {
+                        $button.prepend('<i class="state-icon ' + settings[$button.data('state')].icon + '"></i>');
+                    }
+                }
+                init();
+            });
+        });
+    </script>
+</body>
 </html>
